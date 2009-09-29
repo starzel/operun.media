@@ -18,6 +18,10 @@ class IMedia(Interface):
     text = schema.Text(title=_(u"Body Text"),
                                     required = False)
     
+    showimage = schema.Bool(title=_(u"Show Image"),
+                                    description=_(u"Display the Image beside the Body Text."),
+                                    required = False)
+    
     link = schema.Text(title=_(u"Link"),
                                     description=_(u"Please enter the URL to a file or YouTube video."),
                                     required = False)

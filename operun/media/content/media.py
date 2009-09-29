@@ -20,13 +20,19 @@ from operun.media.config import PROJECTNAME
 from operun.media import MediaMessageFactory as _
 
 SELECTION = DisplayList((
-    ('', 'Keine Vorgabe'),
     ('internal', 'Hochgeladene Datei'),
     ('external', 'Verlinkte Datei'),
     ))
 
 
 schema = Schema((
+
+    BooleanField('showimage',
+        storage = AnnotationStorage(),
+        widget = BooleanWidget(label=_(u"Show Image"),
+                            description=_(u"Display the Image beside the Body Text."),
+                            ),
+        ),     
 
     StringField('link',
         searchable = False,
@@ -67,11 +73,10 @@ MediaSchema = ATNewsItemSchema.copy() + schema.copy()
 MediaSchema['title'].storage = AnnotationStorage()
 MediaSchema['description'].storage = AnnotationStorage()
 MediaSchema['text'].storage = AnnotationStorage()
-
 MediaSchema['image'].widget.description = _(u'label_image_field', default = u'Will be shown in the folder listing, and as screenshot. Image will be scaled to a sensible size.')
-MediaSchema['imageCaption'].widget.visible = {"edit": "invisible", "view": "invisible"}
 MediaSchema['image'].schemata = 'Media'
 MediaSchema['imageCaption'].schemata = 'Media'
+MediaSchema['showimage'].schemata = 'Media'
 MediaSchema['link'].schemata = 'Media'
 MediaSchema['file'].schemata = 'Media'
 MediaSchema['selection'].schemata = 'Media'
@@ -88,10 +93,13 @@ class Media(ATNewsItem):
     _at_rename_after_creation = True
 
     schema = MediaSchema
+    schema.moveField('showimage', before = 'link')
     
     title = ATFieldProperty('title')
     description = ATFieldProperty('description')
     text = ATFieldProperty('text')
+    
+    showimage = ATFieldProperty('showimage')
     link = ATFieldProperty('link')
     file = ATFieldProperty('file')
     
@@ -113,6 +121,13 @@ class Media(ATNewsItem):
                     image = field.getScale(self, scale=scalename)
             if image is not None and not isinstance(image, basestring):
                 return image
+        if name.startswith('splash'):
+            field = self.getField('image')
+            image = None
+            scalename = 'large'
+            image = field.getScale(self, scale=scalename)
+            if image is not None and not isinstance(image, basestring):
+                return image
         if name.startswith('file'):
             field = self.getField('file')
             file = None
@@ -131,10 +146,8 @@ class Media(ATNewsItem):
     def isFile(self):
         """Check if there is a File"""
 
-        #size = self.getField('file').get_size(self)
-        size = '1'
-        if size:
-            return True
+        size = self.getField('file').get_size(self)
+        if size: return True
         return None
         
 registerType(Media, PROJECTNAME)

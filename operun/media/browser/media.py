@@ -39,15 +39,21 @@ class MediaView(BrowserView):
     def getPlayer(self):
         """Return wich player to display"""
         
-        if self.isYouTube() and self.isMediaPlayer():
+        youtube = self.isYouTube()
+        player = self.isMediaPlayer()
+        
+        if youtube and player:
             if self.selection:
                 return self.selection
             else:
                 return 'external'
-        if not self.isYouTube():
-            return 'internal'
-        if not self.isMediaPlayer():
-            return 'external'
+        elif youtube or player:
+            if not self.isYouTube():
+                return 'internal'
+            if not self.isMediaPlayer():
+                return 'external'
+        else:
+            return None
     
     def getYouTubeLink(self):
         """Returns the URL used by the embed code by YouTube"""
