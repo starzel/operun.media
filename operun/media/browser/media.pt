@@ -86,11 +86,11 @@
 			<a href=""
 			   style="display: block; width: 520px; height: 330px;"
 			   id="flowplayer"
-			   tal:attributes="href python: here.absolute_url() + '/file_' + here.getFileName()">
+			   tal:attributes="href python: here.absolute_url() + '/download'">
 			</a>
 			
 			<script tal:define="splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png';
-								video python: here.absolute_url() + '/file_' + here.getFileName();"
+								video python: here.absolute_url() + '/download'"
 			        tal:content="string: flowplayer('flowplayer', '${here/portal_url}/%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.swf',  {
 			        	playlist: [
 			        		{
@@ -101,14 +101,9 @@
 			        			autoPlay: false,
 			        			autoBuffering: false
 			        		}
-			        		] });		
-			
-			"></script>
-			
-			
-			
+			        		] });">
+			</script>
 		</div>
-		
 		
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">
             show related items if they exist

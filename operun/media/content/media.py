@@ -1,3 +1,6 @@
+from Products.CMFCore.permissions import View
+from AccessControl import ClassSecurityInfo
+
 from zope.interface import implements
 
 try:
@@ -103,6 +106,8 @@ class Media(ATNewsItem):
     link = ATFieldProperty('link')
     file = ATFieldProperty('file')
     
+    security = ClassSecurityInfo()
+    
 
     def tag(self, **kwargs):
         """Generate image tag using the api of the ImageField
@@ -128,12 +133,6 @@ class Media(ATNewsItem):
             image = field.getScale(self, scale=scalename)
             if image is not None and not isinstance(image, basestring):
                 return image
-        if name.startswith('file'):
-            field = self.getField('file')
-            file = None
-            file = field.download(self)
-            if file is not None:
-                return file
         return super(Media, self).__bobo_traverse__(REQUEST, name)
 
     def getFileName(self):
@@ -142,6 +141,17 @@ class Media(ATNewsItem):
         field = self.getField('file')
         filename = field.getFilename(self)
         return filename
+
+
+    security.declareProtected(View, 'download')
+    def download(self, REQUEST=None, RESPONSE=None):
+        """Download the file
+        """
+    
+        if self.isFile():
+            field = self.getField('file')
+            return field.download(self)
+        return None
     
     def isFile(self):
         """Check if there is a File"""
