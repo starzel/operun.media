@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-09-29 14:22+0000\n"
+"POT-Creation-Date: 2009-09-30 09:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgstr "Haupttext"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ./content/media.py:33
+#: ./content/media.py:36
 msgid "Display the Image beside the Body Text."
 msgstr "Zeige das Bild neben dem Haupttext."
 
-#: ./content/media.py:54
+#: ./content/media.py:57
 msgid "File"
 msgstr "Datei"
 
-#: ./content/media.py:42
+#: ./content/media.py:45
 msgid "Link"
 msgstr "Link"
 
@@ -48,19 +48,19 @@ msgstr "Media Content Typ"
 msgid "Plain Description of the Body Text"
 msgstr "Plain Text Beschreibung des Haupttextes"
 
-#: ./content/media.py:43
+#: ./content/media.py:46
 msgid "Please enter the URL to a file or YouTube video."
 msgstr "Bitte geben Sie die URL zu einer Datei oder zu einem YouTube Video an."
 
-#: ./content/media.py:64
+#: ./content/media.py:67
 msgid "Please select what to display."
 msgstr "Bitte wählen Sie was angezeigt werden soll."
 
-#: ./content/media.py:63
+#: ./content/media.py:66
 msgid "Select source"
 msgstr "Quelle wählen"
 
-#: ./content/media.py:32
+#: ./content/media.py:35
 msgid "Show Image"
 msgstr "Zeige Bild"
 
@@ -68,12 +68,12 @@ msgstr "Zeige Bild"
 msgid "Title"
 msgstr "Titel"
 
-#: ./content/media.py:55
+#: ./content/media.py:58
 msgid "Upload a audio or video file."
 msgstr "Laden Sie eine Audio- oder Video-Datei hoch."
 
 #. Default: "Will be shown in the folder listing, and as screenshot. Image will be scaled to a sensible size."
-#: ./content/media.py:76
+#: ./content/media.py:79
 msgid "label_image_field"
 msgstr "Das Bild wird in Ordnerauflistungen und als Vorschaubild verwendet. Die Größe wird automatisch angepasst."
 
