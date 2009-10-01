@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-09-30 09:32+0000\n"
+"POT-Creation-Date: 2009-10-01 14:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,10 @@ msgstr "Haupttext"
 #: ./interfaces/media.py:15
 msgid "Description"
 msgstr "Beschreibung"
+
+#: ./content/media.py:65
+msgid "Display a link to download the file below the player."
+msgstr "Zeige einen Link zum Download der Datei unter dem Player."
 
 #: ./content/media.py:36
 msgid "Display the Image beside the Body Text."
@@ -52,17 +56,21 @@ msgstr "Plain Text Beschreibung des Haupttextes"
 msgid "Please enter the URL to a file or YouTube video."
 msgstr "Bitte geben Sie die URL zu einer Datei oder zu einem YouTube Video an."
 
-#: ./content/media.py:67
+#: ./content/media.py:74
 msgid "Please select what to display."
 msgstr "Bitte wählen Sie was angezeigt werden soll."
 
-#: ./content/media.py:66
+#: ./content/media.py:73
 msgid "Select source"
 msgstr "Quelle wählen"
 
 #: ./content/media.py:35
 msgid "Show Image"
 msgstr "Zeige Bild"
+
+#: ./content/media.py:64
+msgid "Show download link"
+msgstr "Zeige Link zum Download"
 
 #: ./interfaces/media.py:12
 msgid "Title"
@@ -73,7 +81,7 @@ msgid "Upload a audio or video file."
 msgstr "Laden Sie eine Audio- oder Video-Datei hoch."
 
 #. Default: "Will be shown in the folder listing, and as screenshot. Image will be scaled to a sensible size."
-#: ./content/media.py:79
+#: ./content/media.py:86
 msgid "label_image_field"
 msgstr "Das Bild wird in Ordnerauflistungen und als Vorschaubild verwendet. Die Größe wird automatisch angepasst."
 
@@ -81,4 +89,9 @@ msgstr "Das Bild wird in Ordnerauflistungen und als Vorschaubild verwendet. Die 
 #: ./browser/media.pt:60
 msgid "no_body_text"
 msgstr "Dieser Artikel hat keinen Haupttext."
+
+#. Default: "Download the File"
+#: ./browser/media.pt:111
+msgid "video_download"
+msgstr "Download Audio- oder Video-Datei"
 

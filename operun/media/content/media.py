@@ -58,6 +58,13 @@ schema = Schema((
                             description = _(u"Upload a audio or video file."),
                             ),
         ),
+
+    BooleanField('downloadlink',
+        storage = AnnotationStorage(),
+        widget = BooleanWidget(label=_(u"Show download link"),
+                            description=_(u"Display a link to download the file below the player."),
+                            ),
+        ),     
         
     StringField('selection',
         searchable = False,
@@ -80,6 +87,7 @@ MediaSchema['image'].widget.description = _(u'label_image_field', default = u'Wi
 MediaSchema['image'].schemata = 'Media'
 MediaSchema['imageCaption'].schemata = 'Media'
 MediaSchema['showimage'].schemata = 'Media'
+MediaSchema['downloadlink'].schemata = 'Media'
 MediaSchema['link'].schemata = 'Media'
 MediaSchema['file'].schemata = 'Media'
 MediaSchema['selection'].schemata = 'Media'
@@ -107,8 +115,7 @@ class Media(ATNewsItem):
     file = ATFieldProperty('file')
     
     security = ClassSecurityInfo()
-    
-
+        
     def tag(self, **kwargs):
         """Generate image tag using the api of the ImageField
         """

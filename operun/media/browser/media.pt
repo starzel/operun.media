@@ -67,6 +67,8 @@
         	Body text
         </metal:field>
         
+        <div class="visualClear" id="clear-space-before-player"><!-- --></div>        
+        
         <div id="youtubeplayer" tal:condition="python: view.getPlayer() == 'external'">
         	<object width="425" height="344">
         		<param name="movie" value="http://www.youtube.com/v/ggofuGDoQyg&hl=de&fs=1&" />
@@ -82,15 +84,17 @@
         	</object>
         </div>
         
-        <div id="mediaplayer" tal:condition="python: view.getPlayer() == 'internal'" tal:define="image string:$here_url/splash.jpg; test here/image_mini|nothing">
+        <div id="mediaplayer" tal:condition="python: view.getPlayer() == 'internal'"
+        					  tal:define="image string:$here_url/splash.jpg;
+        					  			  test here/image_mini|nothing;
+        					  			  video python: here.absolute_url() + '/download';">
 			<a href=""
 			   style="display: block; width: 520px; height: 330px;"
 			   id="flowplayer"
-			   tal:attributes="href python: here.absolute_url() + '/download'">
+			   tal:attributes="href video">
 			</a>
 			
-			<script tal:define="splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png';
-								video python: here.absolute_url() + '/download'"
+			<script tal:define="splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png'"
 			        tal:content="string: flowplayer('flowplayer', '${here/portal_url}/%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.swf',  {
 			        	playlist: [
 			        		{
@@ -103,6 +107,8 @@
 			        		}
 			        		] });">
 			</script>
+			
+			<a href="" tal:attributes="href video; title here/Title;" i18n:translate="video_download" tal:condition="here/getDownloadlink">Download the File</a>
 		</div>
 		
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">

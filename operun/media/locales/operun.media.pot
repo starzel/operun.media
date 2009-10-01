@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-09-30 09:32+0000\n"
+"POT-Creation-Date: 2009-10-01 14:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr ""
 
 #: ./interfaces/media.py:15
 msgid "Description"
+msgstr ""
+
+#: ./content/media.py:65
+msgid "Display a link to download the file below the player."
 msgstr ""
 
 #: ./content/media.py:36
@@ -55,16 +59,20 @@ msgstr ""
 msgid "Please enter the URL to a file or YouTube video."
 msgstr ""
 
-#: ./content/media.py:67
+#: ./content/media.py:74
 msgid "Please select what to display."
 msgstr ""
 
-#: ./content/media.py:66
+#: ./content/media.py:73
 msgid "Select source"
 msgstr ""
 
 #: ./content/media.py:35
 msgid "Show Image"
+msgstr ""
+
+#: ./content/media.py:64
+msgid "Show download link"
 msgstr ""
 
 #: ./interfaces/media.py:12
@@ -76,12 +84,17 @@ msgid "Upload a audio or video file."
 msgstr ""
 
 #. Default: "Will be shown in the folder listing, and as screenshot. Image will be scaled to a sensible size."
-#: ./content/media.py:79
+#: ./content/media.py:86
 msgid "label_image_field"
 msgstr ""
 
 #. Default: "This item does not have any body text, click the edit tab to change it."
 #: ./browser/media.pt:60
 msgid "no_body_text"
+msgstr ""
+
+#. Default: "Download the File"
+#: ./browser/media.pt:111
+msgid "video_download"
 msgstr ""
 
