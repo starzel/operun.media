@@ -28,4 +28,12 @@ class IMedia(Interface):
     
     file = schema.Text(title=_(u"File"),
                                     description=_(u"Upload a audio or video file."),
-                                    required = False)    
+                                    required = False)
+    
+    width = schema.Int(title=_(u"Player width"),
+                                    description=_(u"Enter the player width."),
+                                    required = True)
+    
+    height = schema.Int(title=_(u"Player height"),
+                                    description=_(u"Enter the player height."),
+                                    required = True)

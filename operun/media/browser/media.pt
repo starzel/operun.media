@@ -89,9 +89,12 @@
         					  			  test here/image_mini|nothing;
         					  			  video python: here.absolute_url() + '/download';">
 			<a href=""
-			   style="display: block; width: 520px; height: 330px;"
+			   style=""
 			   id="flowplayer"
-			   tal:attributes="href video">
+			   tal:define="width here/getWidth;
+			   			   height python: here.getHeight()+24;"
+			   tal:attributes="href video;
+			   				   style string: display: block;; width: ${width}px;; height: ${height}px;;">
 			</a>
 			
 			<script tal:define="splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png'"

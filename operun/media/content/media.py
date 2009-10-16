@@ -58,6 +58,27 @@ schema = Schema((
                             description = _(u"Upload a audio or video file."),
                             ),
         ),
+        
+
+    IntegerField('width',
+        searchable = False,
+        required = True,
+        storage = AnnotationStorage(),
+        default = 320,
+        widget = IntegerWidget(label=_(u"Player width"),
+                            description=_(u"Enter the player width."),
+                            ),     
+        ),
+
+    IntegerField('height',
+        searchable = False,
+        required = True,
+        storage = AnnotationStorage(),
+        default = 240,
+        widget = IntegerWidget(label=_(u"Player height"),
+                            description=_(u"Enter the player height."),
+                            ),     
+        ),
 
     BooleanField('downloadlink',
         storage = AnnotationStorage(),
@@ -90,6 +111,8 @@ MediaSchema['showimage'].schemata = 'Media'
 MediaSchema['downloadlink'].schemata = 'Media'
 MediaSchema['link'].schemata = 'Media'
 MediaSchema['file'].schemata = 'Media'
+MediaSchema['width'].schemata = 'Media'
+MediaSchema['height'].schemata = 'Media'
 MediaSchema['selection'].schemata = 'Media'
 
 finalizeATCTSchema(MediaSchema, folderish=False, moveDiscussion=False)
@@ -113,6 +136,9 @@ class Media(ATNewsItem):
     showimage = ATFieldProperty('showimage')
     link = ATFieldProperty('link')
     file = ATFieldProperty('file')
+    
+    width = ATFieldProperty('width')
+    height = ATFieldProperty('height')
     
     security = ClassSecurityInfo()
         

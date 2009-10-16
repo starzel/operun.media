@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-10-01 14:18+0000\n"
+"POT-Creation-Date: 2009-10-15 23:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,12 +25,20 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ./content/media.py:65
+#: ./content/media.py:84
 msgid "Display a link to download the file below the player."
 msgstr ""
 
 #: ./content/media.py:36
 msgid "Display the Image beside the Body Text."
+msgstr ""
+
+#: ./content/media.py:77
+msgid "Enter the player height."
+msgstr ""
+
+#: ./content/media.py:68
+msgid "Enter the player width."
 msgstr ""
 
 #: ./content/media.py:57
@@ -55,15 +63,23 @@ msgstr ""
 msgid "Plain Description of the Body Text"
 msgstr ""
 
+#: ./content/media.py:76
+msgid "Player height"
+msgstr ""
+
+#: ./content/media.py:67
+msgid "Player width"
+msgstr ""
+
 #: ./content/media.py:46
 msgid "Please enter the URL to a file or YouTube video."
 msgstr ""
 
-#: ./content/media.py:74
+#: ./content/media.py:93
 msgid "Please select what to display."
 msgstr ""
 
-#: ./content/media.py:73
+#: ./content/media.py:92
 msgid "Select source"
 msgstr ""
 
@@ -71,7 +87,7 @@ msgstr ""
 msgid "Show Image"
 msgstr ""
 
-#: ./content/media.py:64
+#: ./content/media.py:83
 msgid "Show download link"
 msgstr ""
 
@@ -84,7 +100,7 @@ msgid "Upload a audio or video file."
 msgstr ""
 
 #. Default: "Will be shown in the folder listing, and as screenshot. Image will be scaled to a sensible size."
-#: ./content/media.py:86
+#: ./content/media.py:105
 msgid "label_image_field"
 msgstr ""
 
@@ -94,7 +110,7 @@ msgid "no_body_text"
 msgstr ""
 
 #. Default: "Download the File"
-#: ./browser/media.pt:111
+#: ./browser/media.pt:114
 msgid "video_download"
 msgstr ""
 
