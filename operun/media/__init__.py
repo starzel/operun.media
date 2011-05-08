@@ -4,7 +4,12 @@ from operun.media import config
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
 
+from Products.validation import validation
+from validators import FooValidator
+
 MediaMessageFactory = MessageFactory('operun.media')
+
+validation.register(FooValidator('isFoo'))
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product."""

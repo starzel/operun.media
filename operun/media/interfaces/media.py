@@ -37,3 +37,11 @@ class IMedia(Interface):
     height = schema.Int(title=_(u"Player height"),
                                     description=_(u"Enter the player height."),
                                     required = True)
+
+    downloadlink = schema.Bool(title=_(u"Show download link"),
+                                    description=_(u"Display a link to download the file below the player."),
+                                    required = False)
+
+    audiomode = schema.Bool(title=_(u"Audio mode"),
+                                    description=_(u"Check to display the palyer controls only."),
+                                    required = False)

@@ -87,13 +87,14 @@
         <div id="mediaplayer" tal:condition="python: view.getPlayer() == 'internal'"
         					  tal:define="image string:$here_url/splash.jpg;
         					  			  test here/image_mini|nothing;
-        					  			  video python: here.absolute_url() + '/download';">
+        					  			  file view/getDownloadLink;
+        					  			  ">
 			<a href=""
 			   style=""
 			   id="flowplayer"
-			   tal:define="width here/getWidth;
-			   			   height python: here.getHeight()+24;"
-			   tal:attributes="href video;
+			   tal:define="width view/getPlayerWidth;
+			   			   height view/getPlayerHeight;"
+			   tal:attributes="href file;
 			   				   style string: display: block;; width: ${width}px;; height: ${height}px;;">
 			</a>
 			
@@ -104,14 +105,14 @@
 			        			url: '${splashimage}'
 			        		},
 			        		{
-			        			url: '${video}',
+			        			url: '${file}',
 			        			autoPlay: false,
 			        			autoBuffering: false
 			        		}
 			        		] });">
 			</script>
 			
-			<a href="" tal:attributes="href video; title here/Title;" i18n:translate="video_download" tal:condition="here/getDownloadlink">Download the File</a>
+			<a href="" tal:attributes="href file; title here/Title;" i18n:translate="video_download" tal:condition="here/getDownloadlink">Download the File</a>
 		</div>
 		
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">

@@ -56,5 +56,36 @@ class MediaView(BrowserView):
             return None
     
     def getYouTubeLink(self):
-        """Returns the URL used by the embed code by YouTube"""
+        """ Returns the URL used by the embed code by YouTube
+        """
+        
         return self.link.replace('watch?v=', 'v/')
+    
+    def getDownloadLink(self):
+        """ Returns the download link
+        """
+        context = aq_inner(self.context)
+        
+        return context.absolute_url() + '/' + context.getFileName()
+    
+
+    def getPlayerWidth(self):
+        """ Returns the width of the media player
+        """
+        
+        context = aq_inner(self.context)
+        
+        return context.getWidth()
+
+    
+    def getPlayerHeight(self):
+        """ Returns the height of the media player
+        """
+        
+        context = aq_inner(self.context)
+        
+        if context.getAudiomode():
+            return 24
+        else:
+            return context.getHeight() + 24
+        

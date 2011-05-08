@@ -53,7 +53,7 @@ schema = Schema((
         required = False,
         languageIndependent = True,
         storage = AnnotationStorage(),
-        validators = (('isNonEmptyFile', V_REQUIRED), ('checkFileMaxSize', V_REQUIRED)),
+        validators = (('isNonEmptyFile', V_REQUIRED), ('isFoo', V_REQUIRED), ('checkFileMaxSize', V_REQUIRED),),
         widget = FileWidget(label = _(u"File"),
                             description = _(u"Upload a audio or video file."),
                             ),
@@ -86,6 +86,13 @@ schema = Schema((
                             description=_(u"Display a link to download the file below the player."),
                             ),
         ),     
+
+    BooleanField('audiomode',
+        storage = AnnotationStorage(),
+        widget = BooleanWidget(label=_(u"Audio mode"),
+                            description=_(u"Check to display the palyer controls only."),
+                            ),
+        ),     
         
     StringField('selection',
         searchable = False,
@@ -109,6 +116,7 @@ MediaSchema['image'].schemata = 'Media'
 MediaSchema['imageCaption'].schemata = 'Media'
 MediaSchema['showimage'].schemata = 'Media'
 MediaSchema['downloadlink'].schemata = 'Media'
+MediaSchema['audiomode'].schemata = 'Media'
 MediaSchema['link'].schemata = 'Media'
 MediaSchema['file'].schemata = 'Media'
 MediaSchema['width'].schemata = 'Media'
@@ -140,6 +148,9 @@ class Media(ATNewsItem):
     width = ATFieldProperty('width')
     height = ATFieldProperty('height')
     
+    downloadlink = ATFieldProperty('downloadlink')
+    audiomode = ATFieldProperty('audiomode')
+    
     security = ClassSecurityInfo()
         
     def tag(self, **kwargs):
@@ -148,6 +159,7 @@ class Media(ATNewsItem):
         return self.getField('image').tag(self, **kwargs)
     
     def __bobo_traverse__(self, REQUEST, name):
+
         if name.startswith('image'):
             field = self.getField('image')
             image = None
@@ -159,6 +171,7 @@ class Media(ATNewsItem):
                     image = field.getScale(self, scale=scalename)
             if image is not None and not isinstance(image, basestring):
                 return image
+
         if name.startswith('splash'):
             field = self.getField('image')
             image = None
@@ -166,7 +179,13 @@ class Media(ATNewsItem):
             image = field.getScale(self, scale=scalename)
             if image is not None and not isinstance(image, basestring):
                 return image
+        
+        if name.startswith(self.getFileName()) and self.isFile():
+            field = self.getField('file')
+            return field.download(self)
+            
         return super(Media, self).__bobo_traverse__(REQUEST, name)
+
 
     def getFileName(self):
         """Returns the file name needed by flowplayer"""
@@ -186,6 +205,7 @@ class Media(ATNewsItem):
             return field.download(self)
         return None
     
+
     def isFile(self):
         """Check if there is a File"""
 

@@ -1,9 +1,8 @@
 #youtubeplayer {
 	text-align: center;
-	padding-bottom: 1em;
+	margin-bottom: 1em;
 	}
 
-#flowplayer {
-	margin: 0 auto;
-	padding-bottom: 1em;
-	}
+#mediaplayer { margin-bottom: 1em; }
+
+#flowplayer { margin: 0 auto; margin-bottom: 1em; }
