@@ -53,7 +53,7 @@ schema = Schema((
         required = False,
         languageIndependent = True,
         storage = AnnotationStorage(),
-        validators = (('isNonEmptyFile', V_REQUIRED), ('isFoo', V_REQUIRED), ('checkFileMaxSize', V_REQUIRED),),
+        validators = (('isNonEmptyFile', V_REQUIRED), ('isFileType', V_REQUIRED), ('checkFileMaxSize', V_REQUIRED),),
         widget = FileWidget(label = _(u"File"),
                             description = _(u"Upload a audio or video file."),
                             ),

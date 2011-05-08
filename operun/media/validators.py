@@ -16,7 +16,7 @@ except ImportError:
     USE_BBB_VALIDATORS = True
 
 
-class FooValidator:
+class FileTypeValidator:
     """ validate files on mime type
     """
 
@@ -32,8 +32,6 @@ class FooValidator:
         
         instance = kwargs.get('instance', None)
         field = kwargs.get('field', None)
-        
-        print value.headers['content-type']
         
         if value.headers['content-type'] in TYPES and value.filename[-3:] in FILES:
             return 1

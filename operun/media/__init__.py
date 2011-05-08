@@ -5,11 +5,11 @@ from Products.Archetypes import atapi
 from Products.CMFCore import utils
 
 from Products.validation import validation
-from validators import FooValidator
+from validators import FileTypeValidator
 
 MediaMessageFactory = MessageFactory('operun.media')
 
-validation.register(FooValidator('isFoo'))
+validation.register(FileTypeValidator('isFileType'))
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product."""
