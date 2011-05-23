@@ -13,6 +13,7 @@ FILES = [
 ] 
 
 TYPES = [
+    'application/octet-stream',
     'video/x-flv',
     'video/mp4',
     'video/x-m4v',
