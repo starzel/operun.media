@@ -4,6 +4,11 @@ from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 
 try:
+    from plone.app.blob.field import FileField as MediaFileField
+except:
+    from Products.Archetypes.atapi import FileField as MediaFileField
+
+try:
     from Products.LinguaPlone.public import *
 except ImportError:
     from Products.Archetypes.atapi import *
@@ -47,8 +52,7 @@ schema = Schema((
                               ),     
         ),
         
-
-    FileField('file',
+    MediaFileField('file',
         searchable = False,
         required = False,
         languageIndependent = True,
@@ -58,7 +62,6 @@ schema = Schema((
                             description = _(u"Upload a audio or video file."),
                             ),
         ),
-        
 
     IntegerField('width',
         searchable = False,
@@ -192,7 +195,10 @@ class Media(ATNewsItem):
         
         field = self.getField('file')
         filename = field.getFilename(self)
-        return filename
+        if filename:
+            return filename
+        else:
+            return ''
 
 
     security.declareProtected(View, 'download')
