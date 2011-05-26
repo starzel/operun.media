@@ -5,6 +5,7 @@ Changelog
 -----------------------------
 
 - added plone 4 compatiblity [pbauer]
+- update to flowplayer 3.2.7 (when you get error #1069 you must flush your cache since it happens when a old version of the control-plugin is loaded from cache) [pbauer]
 
 
 1.2 - Mai 24th, 2011
