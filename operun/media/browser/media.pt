@@ -23,7 +23,8 @@
                        getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                        templateId template/getId;
                        text here/getText;
-                       here_url context/@@plone_context_state/object_url;">
+                       here_url context/@@plone_context_state/object_url;
+                       is_editable context/@@plone_context_state/is_editable;">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
