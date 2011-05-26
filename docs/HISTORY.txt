@@ -1,7 +1,13 @@
 Changelog
 =========
 
-1.2-beta - Mai 8th, 2011
+2.0 - unreleased
+-----------------------------
+
+- added plone 4 compatiblity [pbauer]
+
+
+1.2 - Mai 24th, 2011
 -----------------------------
 
 - added validator to check file formats [stefan]
