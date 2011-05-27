@@ -5,8 +5,10 @@ from zope.interface import implements
 
 try:
     from plone.app.blob.field import FileField as MediaFileField
+    BLOBSUPPORT = True
 except:
     from Products.Archetypes.atapi import FileField as MediaFileField
+    BLOBSUPPORT = False
 
 try:
     from Products.LinguaPlone.public import *
@@ -192,9 +194,8 @@ class Media(ATNewsItem):
 
     def getFileName(self):
         """Returns the file name needed by flowplayer"""
-        
         field = self.getField('file')
-        filename = field.getFilename(self)
+        filename = self.file.filename
         if filename:
             return filename
         else:
