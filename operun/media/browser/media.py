@@ -65,10 +65,17 @@ class MediaView(BrowserView):
         """ Returns the download link
         """
         context = aq_inner(self.context)
-        
-        return context.absolute_url() + '/' + context.getFileName()
+        type = context.file.getContentType()
+        if hasattr(context.file, 'getBlob'):
+            return context.absolute_url() + '/' + context.getFileName()
+        else:
+            extension = ''
+            if type == 'audio/mpeg':
+                extension = '?e=.mp3'
+            if type == 'video/x-flv':
+                extension = '?e=.flv'
+            return context.file.absolute_url() + extension 
     
-
     def getPlayerWidth(self):
         """ Returns the width of the media player
         """
