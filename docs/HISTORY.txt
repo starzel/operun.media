@@ -9,7 +9,7 @@ Changelog
 - revert flowplayer-upgrade :-( since mp3's wont play anymore
 - add blob-support
 - add fallback for old media (created with a version without blob-support) 
-
+- make 'file' the primary field of the content-type to anable WebDav and /at_download-Links
 
 
 1.2 - Mai 24th, 2011
