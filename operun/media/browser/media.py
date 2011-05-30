@@ -62,22 +62,27 @@ class MediaView(BrowserView):
         return self.link.replace('watch?v=', 'v/')
     
     def getDownloadLink(self):
-        """ Returns the download link
+        """ Returns a download link
         """
         context = aq_inner(self.context)
+        type = context.file.getContentType()
+        extension = ''
         if hasattr(context.file, 'getBlob'):
-            return context.absolute_url() + '/' + context.getFileName()
-        # Fallback for media-files added before blob-support
+            # return a view that return the aquisition-wrapped object 
+            if type.startswith('audio/'):
+                extension = '?e=.mp3'
+            return context.absolute_url() + '/download' + extension
+            
+        # Fallback for media-files added before blob-support.
         # context.file.absolute_url() doesn't return file-extensions, so we do some guessing.   
         else:
-            type = context.file.getContentType()
-            extension = ''
             if type.startswith('audio/'):
                 extension = '?e=.mp3'
             if type.startswith('video/'):
                 extension = '?e=.flv'
             return context.file.absolute_url() + extension 
-    
+
+
     def getPlayerWidth(self):
         """ Returns the width of the media player
         """
