@@ -65,14 +65,16 @@ class MediaView(BrowserView):
         """ Returns the download link
         """
         context = aq_inner(self.context)
-        type = context.file.getContentType()
         if hasattr(context.file, 'getBlob'):
             return context.absolute_url() + '/' + context.getFileName()
+        # Fallback for media-files added before blob-support
+        # context.file.absolute_url() doesn't return file-extensions, so we do some guessing.   
         else:
+            type = context.file.getContentType()
             extension = ''
-            if type == 'audio/mpeg':
+            if type.startswith('audio/'):
                 extension = '?e=.mp3'
-            if type == 'video/x-flv':
+            if type.startswith('video/'):
                 extension = '?e=.flv'
             return context.file.absolute_url() + extension 
     
