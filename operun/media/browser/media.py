@@ -10,10 +10,10 @@ from operun.media.interfaces import IMedia
 
 try: 
     # Plone 4 and higher 
-    import plone.app.upgrade 
-    PLONE_VERSION = 4 
+    import plone.app.blob 
+    BLOB_SUPPORT = True 
 except ImportError: 
-    PLONE_VERSION = 3
+    BLOB_SUPPORT = False
 
 class MediaView(BrowserView):
 
@@ -74,7 +74,7 @@ class MediaView(BrowserView):
         type = context.file.getContentType()
         extension = ''
         
-        if PLONE_VERSION == 4:
+        if BLOB_SUPPORT:
             if hasattr(context.file, 'getBlob'):
                 # return a view that return the aquisition-wrapped object 
                 if type.startswith('audio/'):
@@ -91,19 +91,12 @@ class MediaView(BrowserView):
                 return context.file.absolute_url() + extension 
 
         else:
-            if hasattr(context.file, 'getBlob'):
-                # return a view that return the aquisition-wrapped object 
-                if type.startswith('audio/'):
-                    extension = '?e=.mp3'
-                return context.absolute_url() + '/download' + extension
-                
-            # plone3-method to get the file (plone.app.blob may not be installed)   
-            else:
-                if type.startswith('audio/'):
-                    extension = '?e=.mp3'
-                if type.startswith('video/'):
-                    extension = '?e=.flv'
-                return context.absolute_url() + '/' + context.getFileName() + extension
+            # get the file without plone.app.blob   
+            if type.startswith('audio/'):
+                extension = '?e=.mp3'
+            if type.startswith('video/'):
+                extension = '?e=.flv'
+            return context.absolute_url() + '/' + context.getFileName() + extension
 
     def getPlayerWidth(self):
         """ Returns the width of the media player
