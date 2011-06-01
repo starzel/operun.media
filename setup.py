@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.0-beta'
+version = '2.0-beta2'
 
 setup(name='operun.media',
       version=version,

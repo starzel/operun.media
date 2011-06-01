@@ -7,6 +7,7 @@ Changelog
 - fix content-creation in plone4 [pbauer]
 - disable fade-out for controls [pbauer]
 
+
 2.0-beta - June 1st, 2011
 -----------------------------
 
