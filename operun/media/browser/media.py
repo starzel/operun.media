@@ -92,11 +92,7 @@ class MediaView(BrowserView):
 
         else:
             # get the file without plone.app.blob   
-            if type.startswith('audio/'):
-                extension = '?e=.mp3'
-            if type.startswith('video/'):
-                extension = '?e=.flv'
-            return context.absolute_url() + '/' + context.getFileName() + extension
+            return context.absolute_url() + '/' + context.getFileName()
 
     def getPlayerWidth(self):
         """ Returns the width of the media player
