@@ -97,7 +97,7 @@ class MediaView(BrowserView):
                     extension = '?e=.mp3'
                 return context.absolute_url() + '/download' + extension
                 
-            # plone3-method to get the file   
+            # plone3-method to get the file (plone.app.blob may not be installed)   
             else:
                 if type.startswith('audio/'):
                     extension = '?e=.mp3'
