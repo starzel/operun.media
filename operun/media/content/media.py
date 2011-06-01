@@ -4,6 +4,11 @@ from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 
 try:
+    from plone.app.blob.field import FileField as MediaFileField
+except:
+    from Products.Archetypes.atapi import FileField as MediaFileField
+
+try:
     from Products.LinguaPlone.public import *
 except ImportError:
     from Products.Archetypes.atapi import *
@@ -28,7 +33,10 @@ SELECTION = DisplayList((
     ))
 
 
-schema = Schema((
+MediaSchema = ATNewsItemSchema.copy()
+MediaSchema['text'].primary = False
+
+MediaSchema = MediaSchema + Schema((
 
     BooleanField('showimage',
         storage = AnnotationStorage(),
@@ -47,8 +55,8 @@ schema = Schema((
                               ),     
         ),
         
-
-    FileField('file',
+    MediaFileField('file',
+        primary= True,
         searchable = False,
         required = False,
         languageIndependent = True,
@@ -58,7 +66,6 @@ schema = Schema((
                             description = _(u"Upload a audio or video file."),
                             ),
         ),
-        
 
     IntegerField('width',
         searchable = False,
@@ -105,8 +112,6 @@ schema = Schema((
         
     ),
 )
-
-MediaSchema = ATNewsItemSchema.copy() + schema.copy()
 
 MediaSchema['title'].storage = AnnotationStorage()
 MediaSchema['description'].storage = AnnotationStorage()
@@ -181,7 +186,7 @@ class Media(ATNewsItem):
                 return image
         
         if name.startswith(self.getFileName()) and self.isFile():
-            field = self.getField('file')
+            field = self.getWrappedField('file')
             return field.download(self)
             
         return super(Media, self).__bobo_traverse__(REQUEST, name)
@@ -190,18 +195,25 @@ class Media(ATNewsItem):
     def getFileName(self):
         """Returns the file name needed by flowplayer"""
         
-        field = self.getField('file')
-        filename = field.getFilename(self)
-        return filename
+        try: 
+            filename = self.getFilename()
+            return filename
+        except AttributeError:
+            # fallback for ATFile 
+            filename = self.file.filename
+            if filename:
+                return filename
+            else:
+                return ''
 
 
     security.declareProtected(View, 'download')
     def download(self, REQUEST=None, RESPONSE=None):
         """Download the file
         """
-    
+
         if self.isFile():
-            field = self.getField('file')
+            field = self.getWrappedField('file')
             return field.download(self)
         return None
     
@@ -209,7 +221,7 @@ class Media(ATNewsItem):
     def isFile(self):
         """Check if there is a File"""
 
-        size = self.getField('file').get_size(self)
+        size = self.getWrappedField('file').get_size(self)
         if size: return True
         return None
         

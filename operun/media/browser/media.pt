@@ -114,7 +114,7 @@
 			        		] });">
 			</script>
 			
-			<a href="" tal:attributes="href file; title here/Title;" i18n:translate="video_download" tal:condition="here/getDownloadlink">Download the File</a>
+			<a href="" tal:attributes="href string:${file}; title here/Title;" i18n:translate="video_download" tal:condition="here/getDownloadlink">Download the File</a>
 		</div>
 		
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">

@@ -8,6 +8,12 @@ from Products.CMFCore.utils import getToolByName
 from plone.memoize.instance import memoize
 from operun.media.interfaces import IMedia
 
+try: 
+    # Plone 4 and higher 
+    import plone.app.blob 
+    BLOB_SUPPORT = True 
+except ImportError: 
+    BLOB_SUPPORT = False
 
 class MediaView(BrowserView):
 
@@ -62,12 +68,31 @@ class MediaView(BrowserView):
         return self.link.replace('watch?v=', 'v/')
     
     def getDownloadLink(self):
-        """ Returns the download link
+        """ Returns a download link
         """
         context = aq_inner(self.context)
+        type = context.file.getContentType()
+        extension = ''
         
-        return context.absolute_url() + '/' + context.getFileName()
-    
+        if BLOB_SUPPORT:
+            if hasattr(context.file, 'getBlob'):
+                # return a view that return the aquisition-wrapped object 
+                if type.startswith('audio/'):
+                    extension = '?e=.mp3'
+                return context.absolute_url() + '/download' + extension
+                
+            # Fallback for media-files added before blob-support in operun.media.
+            # context.file.absolute_url() doesn't return file-extensions, so we do some guessing.   
+            else:
+                if type.startswith('audio/'):
+                    extension = '?e=.mp3'
+                if type.startswith('video/'):
+                    extension = '?e=.flv'
+                return context.file.absolute_url() + extension 
+
+        else:
+            # get the file without plone.app.blob   
+            return context.absolute_url() + '/' + context.getFileName()
 
     def getPlayerWidth(self):
         """ Returns the width of the media player
