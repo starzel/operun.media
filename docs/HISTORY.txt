@@ -1,15 +1,15 @@
 Changelog
 =========
 
-2.0 - unreleased
+2.0 - June 1st, 2011
 -----------------------------
 
 - added plone 4 compatiblity (tested with 4.1rc2) [pbauer]
-- update to flowplayer 3.2.7 (when you get error #1069 you must flush your cache since it happens when a old version of the control-plugin is loaded from cache) [pbauer]
-- revert flowplayer-upgrade :-( since mp3's wont play anymore
-- add blob-support
-- add fallback for old media (created with a version without blob-support) 
-- make 'file' the primary field of the content-type to anable WebDav and /at_download-Links
+- update to flowplayer 3.2.7 [pbauer]
+- flush browser cache to resolve error #1069 [pbauer]
+- add support for blob storage [pbauer]
+- add fallback for previously created content without blob support [pbauer] 
+- set file as the primary field in schema to enable webdav and at_download [pbauer]
 
 
 1.2 - Mai 24th, 2011
