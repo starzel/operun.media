@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 - June 1st, 2011
+2.0-beta - June 1st, 2011
 -----------------------------
 
 - added plone 4 compatiblity (tested with 4.1rc2) [pbauer]
