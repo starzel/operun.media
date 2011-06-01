@@ -102,6 +102,12 @@
 			
 			<script tal:define="splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png'"
 			        tal:content="string: flowplayer('flowplayer', '${here/portal_url}/%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.swf',  {
+			        	plugins: {
+                            controls: {
+                                autoHide: false,
+                                       }
+                            },
+
 			        	playlist: [
 			        		{
 			        			url: '${splashimage}'
