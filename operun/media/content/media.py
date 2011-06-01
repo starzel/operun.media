@@ -197,7 +197,11 @@ class Media(ATNewsItem):
         
         try: 
             filename = self.getFilename()
-            return filename
+            if filename:
+                return filename
+            else:
+                return ''
+
         except AttributeError:
             # fallback for ATFile 
             filename = self.file.filename
