@@ -71,18 +71,25 @@
         
         <div class="visualClear" id="clear-space-before-player"><!-- --></div>        
         
-        <div id="youtubeplayer" tal:condition="python: view.getPlayer() == 'external'">
-        	<object width="425" height="344">
-        		<param name="movie" value="http://www.youtube.com/v/ggofuGDoQyg&hl=de&fs=1&" />
+        <div id="youtubeplayer" 
+             tal:condition="python: view.getPlayer() == 'external'"
+             tal:define="width view/getPlayerWidth;
+                         height python:width * 0.8235;">
+        	<object tal:attributes="width width;
+                                    height height;">
+        		<param name="movie" value="" tal:attributes="value string:${view/getYouTubeLink}&rel=0&fs=1" />
         		<param name="allowFullScreen" value="true" />
         		<param name="allowscriptaccess" value="always" />
         		<embed src=""
         	    	   type="application/x-shockwave-flash"
 	        	       allowscriptaccess="always"
     	    	       allowfullscreen="true"
-        		       width="560"
-        		       height="340"
-        	    	   tal:attributes="src view/getYouTubeLink"></embed>
+        		       width="425"
+        		       height="350"
+        	    	   tal:attributes="src string:${view/getYouTubeLink}&rel=0&fs=1;
+        	    	                   width width;
+        	    	                   height height;">
+        	    </embed>
         	</object>
         </div>
         
