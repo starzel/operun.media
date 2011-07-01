@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.0-beta3 (unreleased)
+-----------------------------
+
+- Youtube: Allow fullscreen and don't show related videos [pbauer]
+- Youtube: Use default size of embedded youtube-player for the fields defaults
+- Youtube: Calculate height based on default ratio for youtube (height = width * 0,8235)
+
+
 2.0-beta2 - June 1st, 2011
 -----------------------------
 
