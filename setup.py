@@ -25,10 +25,13 @@ setup(name='operun.media',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.CMFPlone',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
       # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+      target = plone
 
       [distutils.setup_keywords]
       paster_plugins = setuptools.dist:assert_string_list
