@@ -9,6 +9,7 @@ Changelog
 - calculate height based on default ratio for youtube (height = width * 0,8235) [pbauer]
 - changing dependencies from Plone to Products.CMFPlone [pbauer]
 - add entry point z3c.autoinclude.plugin with target plone [pbauer]
+- removed dependencies for Products.CMFPlone for backwards compatiblity [santonelli]
 
 
 2.0-beta2 - June 1st, 2011
