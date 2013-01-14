@@ -89,7 +89,6 @@ MediaSchema = MediaSchema + Schema((
                             ),
         ),
 
-
     IntegerField('width',
         searchable = False,
         required = True,
@@ -255,7 +254,6 @@ class Media(ATNewsItem):
             return field.download(self)
         return None
  
-
     security.declareProtected(View, 'download')
     def download(self, REQUEST=None, RESPONSE=None):
         """Download the file
@@ -266,7 +264,6 @@ class Media(ATNewsItem):
             return field.download(self)
         return None
     
-
     def isFile(self, codec=""):
         """Check if there is a File"""
 

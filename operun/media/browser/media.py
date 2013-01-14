@@ -127,4 +127,3 @@ class MediaView(BrowserView):
             return 24
         else:
             return context.getHeight() + 24
-        
