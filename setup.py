@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '3.0-beta1'
+version = '3.0'
 
 setup(name='operun.media',
       version=version,
@@ -17,7 +17,7 @@ setup(name='operun.media',
       keywords='Plone Audio Video Media',
       author='operun.de by Stefan Antonelli',
       author_email='info@operun.de',
-      url='http://svn.operun.de/svn/operun.media',
+      url='https://github.com/starzel/operun.media',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['operun'],
@@ -27,7 +27,15 @@ setup(name='operun.media',
           'setuptools',
           # -*- Extra requirements: -*-
       ],
-      entry_points="""
+      extras_require = {
+        'test': [
+            'plone.app.testing',
+            'plone.act',
+            'robotsuite',
+            'robotframework-selenium2library',
+            ]
+      },
+      entry_point="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
