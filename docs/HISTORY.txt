@@ -1,6 +1,14 @@
 Changelog
 =========
 
+3.0 (unreleased)
+----------------
+
+- fix content-creation in plone4 [pbauer]
+- disable fade-out for controls [pbauer]
+- HTML5 support with video-tag [gomez]
+
+
 2.0-beta3 September 6th, 2011
 -----------------------------
 
@@ -10,14 +18,6 @@ Changelog
 - changing dependencies from Plone to Products.CMFPlone [pbauer]
 - add entry point z3c.autoinclude.plugin with target plone [pbauer]
 - removed dependencies for Products.CMFPlone for backwards compatiblity [santonelli]
-
-
-2.0-beta2 - June 1st, 2011
------------------------------
-
-- fix content-creation in plone4 [pbauer]
-- disable fade-out for controls [pbauer]
-
 
 2.0-beta - June 1st, 2011
 -----------------------------
