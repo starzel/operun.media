@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '3.0'
+version = '3.0dev'
 
 setup(name='operun.media',
       version=version,
@@ -39,12 +39,5 @@ setup(name='operun.media',
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
-
-      [distutils.setup_keywords]
-      paster_plugins = setuptools.dist:assert_string_list
-
-      [egg_info.writers]
-      paster_plugins.txt = setuptools.command.egg_info:write_arg
       """,
-      paster_plugins = ["ZopeSkel"],
       )
