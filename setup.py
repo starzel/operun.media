@@ -35,7 +35,7 @@ setup(name='operun.media',
             'robotframework-selenium2library',
             ]
       },
-      entry_point="""
+      entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
