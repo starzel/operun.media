@@ -14,7 +14,9 @@ operun.media wurde mit Version 3.0 überarbeitet und nutzt nun das <video>-Tag
 von HTML5. 
 Zum Abspielen sind mit HTML 5 keine Browser-Plugin wie z.B. Silverlight oder 
 Flash Player nötig. Voraussetzung für den <video>-Tag ist lediglich ein 
-aktueller Browser wie Firefox (ab 3.5) oder Safari (ab 4). 
+aktueller Browser wie Firefox (ab 3.5) oder Safari (ab 4).
+Sie können zu einem Videoobjekt sowohl ogv Dateien als auch MP4 Dateien hochladen.
+Es wird automatisch das passende Video abgespielt.
 
 Leider wurde bisher kein gemeinsamer Nenner von den Browserherstellern gefunden:
 
