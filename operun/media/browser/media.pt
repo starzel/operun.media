@@ -28,7 +28,7 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-        <h1 class="documentFirstHeading"> 
+        <h1 class="documentFirstHeading">
             <metal:field use-macro="python:here.widget('title', mode='view')">
             Title
             </metal:field>
@@ -43,7 +43,7 @@
         </p>
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
-        
+
         <div class="newsImageContainer"
              tal:define="image here/image_mini|nothing"
              tal:condition="python: image and here.getShowimage()">
@@ -58,7 +58,7 @@
               </metal:field>
             </p>
         </div>
-        
+
         <p tal:condition="python: not text and is_editable"
            i18n:translate="no_body_text"
            class="discreet">
@@ -68,10 +68,10 @@
         <metal:field use-macro="python:here.widget('text', mode='view')">
         	Body text
         </metal:field>
-        
-        <div class="visualClear" id="clear-space-before-player"><!-- --></div>        
-        
-        <div id="youtubeplayer" 
+
+        <div class="visualClear" id="clear-space-before-player"><!-- --></div>
+
+        <div id="youtubeplayer"
              tal:condition="python: view.getPlayer() == 'external'"
              tal:define="width view/getPlayerWidth;
                          height python:width * 0.8235;">
@@ -92,7 +92,7 @@
         	    </embed>
         	</object>
         </div>
-        
+
         <div id="mediaplayer" tal:condition="python: view.getPlayer() == 'internal'"
         					  tal:define="image string:$here_url/splash.jpg;
         					  			  test here/image_mini|nothing;
@@ -104,9 +104,9 @@
 	                     	     height view/getPlayerHeight;
                                  flowplayer_url string:${here/portal_url}/%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.swf;
 			                     splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png'">
-    <video controls="controls" 
+    <video controls="controls"
            id="flowplayer"
-           preload="auto" 
+           preload="auto"
            poster=""
            width=""
            height=""
@@ -115,11 +115,11 @@
 			   			   style string: display: block;; width: ${width}px;; height: ${height}px;;;
                            height string:${height}">
 
-         <source src="" 
+         <source src=""
                  type="video/mp4"
                  tal:attributes="src fileMP4"/>
 
-         <source src="" 
+         <source src=""
                  type="video/ogg"
                  tal:attributes="src fileOGG"/>
 
@@ -138,12 +138,8 @@
 </tal:def>
 			<a href="" tal:attributes="href string:${file}; title here/Title;" i18n:translate="video_download" tal:condition="here/getDownloadlink">Download the File</a>
 		</div>
-		
-        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
-    
-        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    <div tal:replace="structure provider:plone.belowcontentbody" />
 
     </tal:main-macro>
 </metal:main>
