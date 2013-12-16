@@ -4,7 +4,7 @@ Changelog
 3.1 (2013-12-16)
 ----------------
 
-- Nothing changed yet.
+- Compatability with Plone 4.3.x [pbauer]
 
 
 3.0 (2013-01-15)
@@ -31,7 +31,7 @@ Changelog
 - added plone 4 compatiblity (tested with 4.1rc2) [pbauer]
 - update to flowplayer 3.2.7 (flush browser cache if you encounter error #1069) [pbauer]
 - add support for blob storage [pbauer]
-- add fallback for previously created content without blob support [pbauer] 
+- add fallback for previously created content without blob support [pbauer]
 - set file as the primary field in schema to enable webdav and at_download [pbauer]
 
 
@@ -49,7 +49,7 @@ Changelog
 -----------------------------
 
 - added player width and height to support custom formats [stefan]
-  
+
 
 1.0-beta - September 28th, 2009
 -------------------------------
