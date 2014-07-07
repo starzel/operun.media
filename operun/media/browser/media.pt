@@ -122,9 +122,11 @@
 
               <source src=""
                       type="video/mp4"
+                      tal:condition="fileMP4"
                       tal:attributes="src fileMP4"/>
               <source src=""
                       type="video/ogg"
+                      tal:condition="fileOGG"
                       tal:attributes="src fileOGG"/>
 
               <object type="application/x-shockwave-flash"
