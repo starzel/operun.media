@@ -23,17 +23,20 @@ class MediaView(BrowserView):
         self.selection = self.context.getSelection()
 
     def __call__(self):
-        context = aq_inner(self.context)
         return self.template()
 
     def isYouTube(self):
-        """Check if there is a youtube url and external source is selected to play"""
+        """Check if there is a youtube url and
+        external source is selected to play
+        """
         if 'youtube' in self.link.split('.'):
             return True
         return None
 
     def isMediaPlayer(self):
-        """Check if there is a file uploaded and internal source is selected to play"""
+        """Check if there is a file uploaded
+        and internal source is selected to play
+        """
         if self.context.isFile():
             return True
         return None
@@ -67,15 +70,17 @@ class MediaView(BrowserView):
         """ Returns a download link
         """
         context = aq_inner(self.context)
-        extension = '?e=.mp4'
-        return context.absolute_url() + '/downloadMP4' + extension
+        if context.isFile(codec="MP4"):
+            extension = '?e=.mp4'
+            return context.absolute_url() + '/downloadMP4' + extension
 
     def getOGGDownloadLink(self):
         """ Returns a download link
         """
         context = aq_inner(self.context)
-        extension = '?e=.ogv'
-        return context.absolute_url() + '/downloadOGG' + extension
+        if context.isFile(codec="OGG"):
+            extension = '?e=.ogv'
+            return context.absolute_url() + '/downloadOGG' + extension
 
     def getDownloadLink(self):
         """ Returns a download link
