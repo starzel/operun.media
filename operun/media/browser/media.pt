@@ -101,7 +101,7 @@
              tal:condition="python: view.getPlayer() == 'internal'"
              tal:define="image string:$here_url/splash.jpg;
                          test here/image_mini|nothing;
-                         file view/getDownloadLink;
+                         file view/getFileLink;
                          fileMP4 view/getMP4DownloadLink;
                          fileOGG view/getOGGDownloadLink;
                          ">
@@ -109,6 +109,7 @@
                                height view/getPlayerHeight;
                                flowplayer_url string:${here/portal_url}/%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.swf;
                                splashimage python: test and image or '%2B%2Bresource%2B%2Btransparent.png'">
+
             <video controls="controls"
                    id="flowplayer"
                    preload="auto"
@@ -129,7 +130,9 @@
                       tal:condition="fileOGG"
                       tal:attributes="src fileOGG"/>
 
+<!--
               <object type="application/x-shockwave-flash"
+                      tal:condition="file"
                       tal:attributes="width string:${width};
                                       height string:${height};
                                       data flowplayer_url"
@@ -137,10 +140,42 @@
                   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
                   <param name="movie" value="" tal:attributes="value flowplayer_url" />
                   <param name="flashVars" tal:attributes="value config"/>
-
               </object>
+-->
 
             </video>
+
+            <tal:flash tal:condition="file">
+              <a id="flash"
+                 href=""
+                 tal:attributes="href file;
+                                 style string: display: block;; width: ${width}px;; height: ${height}px;;;"
+                 style="display:block; width:520px; height:330px">
+                 <img tal:attributes="src splashimage">
+              </a>
+              <script tal:content="string:
+              flowplayer(
+                'flash',
+                '%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.swf',
+                {
+                debug: true,
+                clip: {
+                  autoPlay: false,
+                  autoBuffering: true
+                },
+                playlist: [
+                  '${file}'
+                ],
+                plugins: {
+                  audio: {
+                     url: '%2B%2Bresource%2B%2Boperun.media.elements/flowplayer.audio.swf'
+                  }
+                }
+              }
+              )">
+              </script>
+            </tal:flash>
+
           </tal:def>
           <a href=""
              tal:attributes="href string:${file}; title here/Title;"

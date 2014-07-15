@@ -6,6 +6,7 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.Archetypes.atapi import DisplayList
 from Products.CMFCore.permissions import View
 from Products.validation import V_REQUIRED
+from plone.memoize.instance import memoize
 from operun.media import MediaMessageFactory as _
 from operun.media.config import PROJECTNAME
 from operun.media.interfaces import IMedia
@@ -278,20 +279,27 @@ class Media(ATNewsItem):
 
     security.declareProtected(View, 'download')
     def download(self, REQUEST=None, RESPONSE=None):
-        """Download the file
+        """Download the flash/mp3 file
         """
 
-        if self.isFile():
+        if self.isFile(codec=""):
             field = self.getWrappedField('file')
             return field.download(self)
         return None
 
     def isFile(self, codec=""):
-        """Check if there is a File"""
+        """Check if there is a File in the specified field (codec)"""
 
         size = self.getWrappedField('file' + codec).get_size(self)
         if size:
             return True
-        return None
+
+    def hasAnyFile(self):
+        """Check if there is any local File"""
+
+        codecs = ["", "OGG", "MP4"]
+        for codec in codecs:
+            if self.isFile(codec):
+                return True
 
 registerType(Media, PROJECTNAME)

@@ -37,12 +37,10 @@ class MediaView(BrowserView):
         """Check if there is a file uploaded
         and internal source is selected to play
         """
-        if self.context.isFile():
-            return True
-        return None
+        return self.context.hasAnyFile()
 
     def getPlayer(self):
-        """Return wich player to display"""
+        """Return which player to display"""
 
         youtube = self.isYouTube()
         player = self.isMediaPlayer()
@@ -82,32 +80,49 @@ class MediaView(BrowserView):
             extension = '?e=.ogv'
             return context.absolute_url() + '/downloadOGG' + extension
 
-    def getDownloadLink(self):
-        """ Returns a download link
-        """
+    def getFileLink(self):
+        """ handle flash/mp3 """
         context = aq_inner(self.context)
-        type = context.file.getContentType()
-        extension = ''
+        if not context.isFile(codec=""):
+            return False
 
+        mimetype = context.file.getContentType()
+        extension = ''
         if BLOB_SUPPORT:
             if hasattr(context.file, 'getBlob'):
                 # return a view that return the aquisition-wrapped object
-                if type.startswith('audio/'):
+                if mimetype.startswith('audio/'):
                     extension = '?e=.mp3'
                 return context.absolute_url() + '/download' + extension
 
             # Fallback for media-files added before blob-support in operun.media.
             # context.file.absolute_url() doesn't return file-extensions, so we do some guessing.
             else:
-                if type.startswith('audio/'):
+                if mimetype.startswith('audio/'):
                     extension = '?e=.mp3'
-                if type.startswith('video/'):
+                if mimetype.startswith('video/'):
                     extension = '?e=.flv'
                 return context.file.absolute_url() + extension
 
         else:
             # get the file without plone.app.blob
             return context.absolute_url() + '/' + context.getFileName()
+
+    def getDownloadLink(self):
+        """ Returns a download link
+        """
+        link = self.getMP4DownloadLink()
+        if link:
+            return link
+
+        link = self.getOGGDownloadLink()
+        if link:
+            return link
+
+        link = self.getFileLink()
+        if link:
+            return link
+
 
     def getPlayerWidth(self):
         """ Returns the width of the media player
